@@ -1,7 +1,20 @@
-import requests
+import nltk
 
-response = requests.get('https://httpbin.org/ip')
+print("----start----")
+sentence = """At eight o'clock on Thursday morning Arthur didn't feel very good."""
 
-print('Your IP is {0}'.format(response.json()['origin']))
+print("load sentence: %s" % sentence)
+tokens = nltk.word_tokenize(sentence)
+print("load tokens: %s" % tokens)
 
 
+tagged = nltk.pos_tag(tokens)
+print("load tagged: %s" % tagged)
+
+
+print(tagged[0:6])
+
+print("--entities--")
+entities = nltk.chunk.ne_chunk(tagged)
+
+print(entities)
